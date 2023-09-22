@@ -1,20 +1,19 @@
-import mongoose, { disconnect } from 'mongoose'
+import mongoose, { disconnect } from "mongoose";
+import { config } from "./config";
 
+export default () => {
+  const connect = () => {
+    mongoose
+      .connect(`${config.DATABASE_URL}`)
+      .then(() => {
+        console.log("Successfully connected to database");
+      })
+      .catch((error) => {
+        console.log("Error cconnecting to database", error);
+        return process.exit(1);
+      });
+  };
+  connect();
 
-export default ()=>{
-
-    const connect = ()=>{
-        mongoose.connect('mongodb://localhost:27017/chatbox')
-        .then(()=>{
-            console.log("Successfully connected to database");
-            
-        }).catch((error)=>{
-            console.log('Error cconnecting to database', error);
-            return process.exit(1);
-            
-        })
-    }
-    connect();
-
-    mongoose.connection.on('disconnected', connect)
-}
+  mongoose.connection.on("disconnected", connect);
+};
