@@ -1,15 +1,18 @@
 import mongoose, { disconnect } from "mongoose";
 import { config } from "./config";
+import Logger from "bunyan";
+
+const log: Logger = config.createLogger("setupDatabase");
 
 export default () => {
   const connect = () => {
     mongoose
       .connect(`${config.DATABASE_URL}`)
       .then(() => {
-        console.log("Successfully connected to database...");
+        log.info("Successfully connected to database...");
       })
       .catch((error) => {
-        console.log("Error cconnecting to database", error);
+        log.error("Error cconnecting to database", error);
         return process.exit(1);
       });
   };
