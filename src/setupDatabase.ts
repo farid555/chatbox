@@ -6,7 +6,7 @@ export default () => {
     mongoose
       .connect(`${config.DATABASE_URL}`)
       .then(() => {
-        console.log("Successfully connected to database");
+        console.log("Successfully connected to database...");
       })
       .catch((error) => {
         console.log("Error cconnecting to database", error);
