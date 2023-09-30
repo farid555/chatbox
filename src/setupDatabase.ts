@@ -1,5 +1,5 @@
-import mongoose, { disconnect } from 'mongoose';
-import { config } from './config';
+import mongoose from 'mongoose';
+import { config } from '@root/config';
 import Logger from 'bunyan';
 
 const log: Logger = config.createLogger('setupDatabase');
